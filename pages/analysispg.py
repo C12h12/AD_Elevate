@@ -1,4 +1,7 @@
 import streamlit as st
+from src.st_values_loading import st_values_load
+from streamlit_extras.switch_page_button import switch_page
+
 st.set_page_config(layout="wide")
 
 from pages.navbar import render_navbar
@@ -10,7 +13,6 @@ st.markdown("""
         <p style="color: #ffffff; font-size: 20px;">Simply enter your campaign text and we will analyze and predict how well your campaign can do based on <br> our high-tech machine learnings model and neatly gathered data.</p>
     </div>
 """, unsafe_allow_html=True)
-
 
 # Custom CSS for styling
 st.markdown("""
@@ -61,17 +63,50 @@ st.markdown('<div class="top-margin"></div>', unsafe_allow_html=True)
 # Create a 3-column layout with the middle column for content
 col1, col2, col3 = st.columns([1, 2, 1])
 
-# Place the text area in the middle column
 with col2:
+    # Campaign Text Input
     query = st.text_area("Search", label_visibility="collapsed", 
                          placeholder="Enter your campaign text...", 
                          key="search_input")
     
-    # Button placed in same column for alignment
-    submitted = st.button("Enter")
+    # Dropdown for Product Category
+    product_category = st.selectbox(
+        "Select Product Category",
+        ["Fashion", "Technology", "Food & Beverage", "Fitness", "Beauty", "Travel", "Education"]
+    )
     
-    # Handling results
-    if submitted and query:
-        st.success(f"Searching for: {query}")
-    elif submitted:
-        st.warning("Please enter a message.")
+    # Dropdown for Platform
+    platform = st.selectbox(
+        "Select Platform",
+        ["Instagram", "YouTube", "TikTok", "Facebook", "Twitter", "LinkedIn"]
+    )
+
+    # Number input for Followers
+    followers = st.number_input(
+        "Number of Followers",
+        min_value=0,
+        step=1000
+    )
+
+    # Age Range Slider
+    age_range = st.slider(
+        "Select Age Range",
+        13, 65, (18, 35)
+    )
+
+    # Button
+    submitted = st.button("Enter")
+
+    # Handle Submission
+    if submitted:
+        if query:
+            # Store values in session state
+            st.session_state.query = query
+            st.session_state.product_category = product_category
+            st.session_state.platform = platform
+            st.session_state.followers = followers
+            st.session_state.age_range = age_range
+            
+            switch_page("go_to_st_values_loading") 
+        else:
+            st.warning("Please enter a campaign message.")
