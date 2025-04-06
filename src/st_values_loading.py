@@ -157,14 +157,14 @@ def st_values_load():
         st.markdown(f"""
         <div style="text-align: center; margin-top: 60px;">
             <h1 style="color: #ffffff; font-size: 40px;">Success Rate</h1>
-            <p style="color: #ffffff; font-size: 20px;">{st.session_state.prediction_result[0]} %</p>
+            <p style="color: #ffffff; font-size: 20px;">{round(st.session_state.prediction_result[0],2)} %</p>
         </div>
         """, unsafe_allow_html=True)
 
         st.markdown(f"""
         <div style="text-align: center; margin-top: 60px;">
             <h1 style="color: #ffffff; font-size: 40px;">Trend Score</h1>
-            <p style="color: #ffffff; font-size: 20px;">{st.session_state.prediction_result[1]} %</p>
+            <p style="color: #ffffff; font-size: 20px;">{round(st.session_state.prediction_result[1],2)} %</p>
         </div>
         """, unsafe_allow_html=True)
         
