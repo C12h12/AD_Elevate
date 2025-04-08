@@ -3,7 +3,7 @@
 
 # external requirements
 awscli
-base64
+
 click
 coverage
 flake8

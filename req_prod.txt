@@ -2,7 +2,6 @@
 
 # Core production dependencies
 awscli
-base64 
 click
 mlflow
 numpy
