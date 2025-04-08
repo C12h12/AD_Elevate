@@ -1,0 +1,18 @@
+-e .  # local package if you're installing your own module
+
+# Core production dependencies
+awscli
+base64 
+click
+mlflow
+numpy
+pandas
+pyyaml
+python-dotenv>=0.5.1
+requests
+scikit-learn
+seaborn
+streamlit
+streamlit-extras
+tensorflow
+textblob

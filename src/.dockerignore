@@ -1,0 +1,38 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Jupyter notebooks
+notebooks/
+
+# Data folders - unnecessary for build context
+data/
+
+reports/
+references/
+
+# Documentation
+docs/
+
+# Sphinx/pytest/test-related
+*.log
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+*.rst
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Git & VCS
+.git/
+.gitignore
