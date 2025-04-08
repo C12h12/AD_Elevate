@@ -1,4 +1,4 @@
--e .  # local package if you're installing your own module
+
 
 # Core production dependencies
 awscli
