@@ -1,6 +1,7 @@
 import streamlit as st
 from src.st_values_loading import st_values_load
 from streamlit_extras.switch_page_button import switch_page
+from pages.navbar import render_navbar
 
 st.set_page_config(layout="wide")
 

@@ -2,6 +2,7 @@ import streamlit as st
 st.set_page_config(layout="wide")
 
 from pages.navbar import render_navbar
+from pages.enhance import enhance_func
 render_navbar()
 
 st.markdown("""
@@ -62,15 +63,5 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 # Place the text area in the middle column
 with col2:
-    query = st.text_area("Search", label_visibility="collapsed", 
-                         placeholder="Tell us whats in your mind...", 
-                         key="search_input")
+    enhance_func()
     
-    # Button placed in same column for alignment
-    submitted = st.button("Enter")
-    
-    # Handling results
-    if submitted and query:
-        st.success(f"Searching for: {query}")
-    elif submitted:
-        st.warning("Please enter a message.")
