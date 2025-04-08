@@ -20,3 +20,4 @@ streamlit
 streamlit-extras
 tensorflow
 textblob
+transformers
