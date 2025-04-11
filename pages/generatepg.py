@@ -29,6 +29,7 @@ st.markdown("""
     padding-top: 0rem !important;
     margin-top: 0rem !important;
 }
+            
 /* Text area styling */
 textarea {
     margin-top: 0px !important;
@@ -69,7 +70,6 @@ textarea {
 </style>
 """, unsafe_allow_html=True)
 
-# Add top margin
 #st.markdown('<div class="top-margin"></div>', unsafe_allow_html=True)
 
 # Create a 3-column layout with the middle column for content
