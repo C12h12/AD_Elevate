@@ -1,4 +1,5 @@
 import streamlit as st
+
 import pickle
 import pandas as pd
 import numpy as np
@@ -10,8 +11,10 @@ from pages.navbar import render_navbar
 
 
 
+
+
 def get_emotion_scores(text):
-    classifier = pipeline("text-classification", model="bhadresh-savani/bert-base-go-emotion", return_all_scores=True,from_pt=True)
+    classifier = pipeline("text-classification", model="bhadresh-savani/bert-base-go-emotion", return_all_scores=True)
     results = classifier(text)
     emotion_dict = {emotion['label']: round(emotion['score'] * 100, 2) for emotion in results[0]}
     return emotion_dict
@@ -169,6 +172,9 @@ def st_values_load():
         """, unsafe_allow_html=True)
         
         print("Predicted Values:", predictions)
+
+
+
 
 
 

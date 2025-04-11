@@ -117,6 +117,6 @@ with col2:
             st.session_state.followers = followers
             st.session_state.age_range = age_range
             
-            switch_page("go_to_st_values_loading") 
+            switch_page("go_to_st_values_loading")
         else:
             st.warning("Please enter a campaign message.")

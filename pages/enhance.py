@@ -1,7 +1,6 @@
-# ✅ MUST BE FIRST Streamlit command
+
 import streamlit as st
 
-# 📦 Other imports
 from textblob import TextBlob
 import requests
 from transformers import pipeline
@@ -17,12 +16,19 @@ def enhance_func():
     MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.1"
 
     # ✅ Emotion classifier (PyTorch-based model)
-    emotion_classifier = pipeline(
+    @st.cache_resource
+    def load_emotion_classifier():
+     return pipeline(
         "text-classification",
         model="bhadresh-savani/bert-base-go-emotion",
+        tokenizer="bhadresh-savani/bert-base-go-emotion",  # ✅ Add this
         return_all_scores=True,
-        from_pt=True  # Required for PyTorch-only model
+        
     )
+
+
+    emotion_classifier = load_emotion_classifier()
+
 
     # 🎯 Rewrite function
     def improve_campaign_text(original_text, tone):
@@ -95,16 +101,13 @@ Improved Version:
             improved = improve_campaign_text(user_input, tone)
             sentiment = get_sentiment(improved)
             prediction = predict_success(improved)
-            emotions = get_emotion_scores(improved)
+
 
             st.markdown("### 🎯 Improved Campaign Text")
             st.success(improved)
 
-            st.markdown("### 😊 Sentiment")
+            st.markdown("###  Sentiment")
             st.info(sentiment)
 
-            st.markdown("### 📊 Predicted Success")
+            st.markdown("###  Predicted Success")
             st.warning(prediction)
-
-            st.markdown("### 🔥 Top Emotions")
-            st.code(emotions)
