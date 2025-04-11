@@ -108,6 +108,5 @@ Improved Version:
 
             st.markdown("###  Sentiment")
             st.info(sentiment)
-
             st.markdown("###  Predicted Success")
             st.warning(prediction)
