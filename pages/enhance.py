@@ -1,6 +1,4 @@
-
 import streamlit as st
-
 from textblob import TextBlob
 import requests
 from transformers import pipeline
@@ -15,20 +13,18 @@ def enhance_func():
     API_URL = "https://api.together.xyz/v1/completions"
     MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.1"
 
-    # ✅ Emotion classifier (PyTorch-based model)
+    # ✅ Emotion classifier (Hugging Face, PyTorch-based)
     @st.cache_resource
     def load_emotion_classifier():
-     return pipeline(
-        "text-classification",
-        model="bhadresh-savani/bert-base-go-emotion",
-        tokenizer="bhadresh-savani/bert-base-go-emotion",  # ✅ Add this
-        return_all_scores=True,
-        
-    )
-
+        return pipeline(
+            "text-classification",
+            model="bhadresh-savani/bert-base-go-emotion",
+            tokenizer="bhadresh-savani/bert-base-go-emotion",
+            return_all_scores=True,
+            framework="pt"
+        )
 
     emotion_classifier = load_emotion_classifier()
-
 
     # 🎯 Rewrite function
     def improve_campaign_text(original_text, tone):
@@ -68,7 +64,7 @@ Improved Version:
         else:
             return f"[ERROR] {response.status_code}: {response.text}"
 
-    # 😊 Sentiment
+    # 😊 Sentiment analysis
     def get_sentiment(text):
         blob = TextBlob(text)
         polarity = blob.sentiment.polarity
@@ -79,14 +75,14 @@ Improved Version:
         else:
             return "😐 Neutral"
 
-    # 📊 Prediction mock
+    # 📊 Success prediction (basic heuristic)
     def predict_success(text):
         sentiment = TextBlob(text).sentiment.polarity
         length_score = len(text)
         prediction = (length_score > 60 and sentiment > 0.2)
         return "✅ Likely to Succeed" if prediction else "❌ Unlikely to Succeed"
 
-    # 💬 Emotion score function
+    # 💬 Emotion score
     def get_emotion_scores(text):
         results = emotion_classifier(text)[0]
         top_emotions = sorted(results, key=lambda x: x['score'], reverse=True)[:3]
@@ -101,12 +97,15 @@ Improved Version:
             improved = improve_campaign_text(user_input, tone)
             sentiment = get_sentiment(improved)
             prediction = predict_success(improved)
+            
 
-
-            st.markdown("### 🎯 Improved Campaign Text")
+            st.markdown("###  Improved Campaign Text")
             st.success(improved)
 
             st.markdown("###  Sentiment")
             st.info(sentiment)
+
             st.markdown("###  Predicted Success")
             st.warning(prediction)
+
+           

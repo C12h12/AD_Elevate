@@ -19,7 +19,8 @@ Sphinx
 streamlit
 streamlit==1.24
 streamlit-extras
-tensorflow
+#tensorflow
 textblob
 transformers
-tf-keras
+#tf-keras
+torch
