@@ -23,4 +23,3 @@ tensorflow
 textblob
 transformers
 tf-keras
-torch
