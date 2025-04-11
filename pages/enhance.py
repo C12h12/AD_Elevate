@@ -13,7 +13,7 @@ def enhance_func():
     API_URL = "https://api.together.xyz/v1/completions"
     MODEL_NAME = "mistralai/Mistral-7B-Instruct-v0.1"
 
-    # ✅ Emotion classifier (Hugging Face, PyTorch-based)
+    # ✅ Emotion classifier (PyTorch-based model)
     @st.cache_resource
     def load_emotion_classifier():
         return pipeline(
@@ -21,12 +21,11 @@ def enhance_func():
             model="bhadresh-savani/bert-base-go-emotion",
             tokenizer="bhadresh-savani/bert-base-go-emotion",
             return_all_scores=True,
-            framework="pt"
         )
 
     emotion_classifier = load_emotion_classifier()
 
-    # 🎯 Rewrite function
+    # 🎯 Rewrite function using Together API
     def improve_campaign_text(original_text, tone):
         prompt = f"""
 You are a top-tier social media marketing expert who deeply understands current trends, audience psychology, and platform-specific engagement strategies.
@@ -64,10 +63,9 @@ Improved Version:
         else:
             return f"[ERROR] {response.status_code}: {response.text}"
 
-    # 😊 Sentiment analysis
+    # 😊 Sentiment detection
     def get_sentiment(text):
-        blob = TextBlob(text)
-        polarity = blob.sentiment.polarity
+        polarity = TextBlob(text).sentiment.polarity
         if polarity > 0.2:
             return "😊 Positive"
         elif polarity < -0.2:
@@ -75,22 +73,23 @@ Improved Version:
         else:
             return "😐 Neutral"
 
-    # 📊 Success prediction (basic heuristic)
+    # 📊 Predict campaign success (mock logic)
     def predict_success(text):
         sentiment = TextBlob(text).sentiment.polarity
         length_score = len(text)
         prediction = (length_score > 60 and sentiment > 0.2)
         return "✅ Likely to Succeed" if prediction else "❌ Unlikely to Succeed"
 
-    # 💬 Emotion score
+    # 💬 Get top 3 emotion scores
     def get_emotion_scores(text):
         results = emotion_classifier(text)[0]
         top_emotions = sorted(results, key=lambda x: x['score'], reverse=True)[:3]
         return ", ".join([f"{e['label']} ({e['score']:.2f})" for e in top_emotions])
 
     # 🌟 Streamlit UI
-    user_input = st.text_area("Enter your campaign text", height=150)
-    tone = st.selectbox("Choose the tone", ["Exciting", "Professional", "Funny", "Friendly", "Urgent"])
+    
+    user_input = st.text_area("📢 Enter your campaign text", height=150)
+    tone = st.selectbox("🎭 Choose the tone", ["Exciting", "Professional", "Funny", "Friendly", "Urgent"])
 
     if st.button("Improve and Analyze"):
         with st.spinner("Working on it..."):
@@ -99,7 +98,7 @@ Improved Version:
             prediction = predict_success(improved)
             
 
-            st.markdown("###  Improved Campaign Text")
+            st.markdown("### 🎯 Improved Campaign Text")
             st.success(improved)
 
             st.markdown("###  Sentiment")
