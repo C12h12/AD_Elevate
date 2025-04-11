@@ -8,6 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
