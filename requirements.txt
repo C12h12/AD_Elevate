@@ -16,7 +16,7 @@ requests
 scikit-learn
 seaborn
 Sphinx
-streamlit
+streamlit==1.25.0
 streamlit-extras
 tensorflow
 textblob
