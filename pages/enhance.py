@@ -75,19 +75,19 @@ def enhance_func():
     user_input = st.text_area("Enter your campaign text", height=150)
     tone = st.selectbox("Choose the tone", ["Exciting", "Professional", "Funny", "Friendly", "Urgent"])
 
-    if st.button("✨ Improve and Analyze"):
+    if st.button("Improve and Analyze"):
         with st.spinner("Working on it..."):
             improved = improve_campaign_text(user_input, tone)
             sentiment = get_sentiment(improved)
             prediction = predict_success(improved)
 
-            st.markdown("### 📝 Improved Campaign Text")
+            st.markdown("###  Improved Campaign Text")
             st.success(improved)
 
-            st.markdown("### 💬 Sentiment")
+            st.markdown("###  Sentiment")
             st.info(sentiment)
 
-            st.markdown("### 📊 Predicted Success")
+            st.markdown("###  Predicted Success")
             st.warning(prediction)
 
 

@@ -6,7 +6,16 @@ from pages.enhance import enhance_func
 render_navbar()
 
 st.markdown("""
-    <div style="text-align: center; margin-top: 60px;">
+    <style>
+        .block-container {
+            padding-top: 0rem !important;
+            margin-top: 0rem !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <div style="text-align: center; margin-top: 20px; margin-bottom: 0px !important;">
         <h1 style="color: #ffffff; font-size: 40px;">Enhance your campaign with AdElevate AI</h1>
         <p style="color: #ffffff; font-size: 20px;">Enter your ideas and texts to refine, our AI turns them into compelling,<br> high-converting content in seconds.</p>
     </div>
@@ -16,8 +25,13 @@ st.markdown("""
 # Custom CSS for styling
 st.markdown("""
 <style>
+    html, body, .main, .block-container {
+    padding-top: 0rem !important;
+    margin-top: 0rem !important;
+}
 /* Text area styling */
 textarea {
+    margin-top: 0px !important;
     min-height: 60px;
     max-height: 300px;
     padding: 12px;
@@ -50,13 +64,13 @@ textarea {
 
 /* Add top margin for spacing */
 .top-margin {
-    margin-top: 80px;
+    margin-top: 1px;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # Add top margin
-st.markdown('<div class="top-margin"></div>', unsafe_allow_html=True)
+#st.markdown('<div class="top-margin"></div>', unsafe_allow_html=True)
 
 # Create a 3-column layout with the middle column for content
 col1, col2, col3 = st.columns([1, 2, 1])

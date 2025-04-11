@@ -9,7 +9,16 @@ from pages.navbar import render_navbar
 render_navbar()
 
 st.markdown("""
-    <div style="text-align: center; margin-top: 60px;">
+    <style>
+        .block-container {
+            padding-top: 1rem !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
+# Your custom HTML content
+st.markdown("""
+    <div style="text-align: center; margin-top: 20px;">
         <h1 style="color: #ffffff; font-size: 40px;">Get Performance Prediction</h1>
         <p style="color: #ffffff; font-size: 20px;">Simply enter your campaign text and we will analyze and predict how well your campaign can do based on <br> our high-tech machine learnings model and neatly gathered data.</p>
     </div>
@@ -20,7 +29,7 @@ st.markdown("""
 <style>
 /* Text area styling */
 textarea {
-    margin-top: 20px;
+    margin-top: 10px !important;
     min-height: 60px;
     max-height: 300px;
     padding: 12px;
