@@ -9,15 +9,18 @@ from pages.navbar import render_navbar
 # ===== Main Enhancement Function =====
 def enhance_func():
     # 🔧 Load environment variables
-    load_dotenv()
+    
     hf_token = os.getenv("HF_TOKEN")
     together_api_key = os.getenv("TOGETHER_API_KEY")  # Optional: Move Together API key to .env too
 
     if not hf_token:
-        raise RuntimeError("HF_TOKEN not found. Set it in .env for local or as a GitHub Secret for CI/CD.")
+        load_dotenv()
+        hf_token = os.getenv("HF_TOKEN")
+        
 
     if not together_api_key:
-        raise RuntimeError("TOGETHER_API_KEY not found. Set it in .env or GitHub Secrets.")
+        together_api_key = os.getenv("TOGETHER_API_KEY")
+        
 
     # 📌 Optional: Render navbar
     render_navbar()

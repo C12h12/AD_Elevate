@@ -13,6 +13,10 @@ jobs:
       TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
 
     steps:
+      - name: Debug Environment
+        run: |
+          echo "HF_TOKEN is set? -> ${HF_TOKEN:+yes}"
+          echo "TOGETHER_API_KEY is set? -> ${TOGETHER_API_KEY:+yes}"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Python 3.11
