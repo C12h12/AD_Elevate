@@ -11,7 +11,7 @@ from pages.navbar import render_navbar
 
 
 def get_emotion_scores(text):
-    classifier = pipeline("text-classification", model="bhadresh-savani/bert-base-go-emotion", return_all_scores=True)
+    classifier = pipeline("text-classification", model="bhadresh-savani/bert-base-go-emotion", return_all_scores=True,from_pt=True)
     results = classifier(text)
     emotion_dict = {emotion['label']: round(emotion['score'] * 100, 2) for emotion in results[0]}
     return emotion_dict
