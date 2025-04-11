@@ -16,3 +16,4 @@ streamlit-extras
 tensorflow
 textblob
 transformers
+tf-keras
